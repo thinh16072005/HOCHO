@@ -7,6 +7,7 @@ import styles from "../../styles/AnswerQuestion/QuestionList.module.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChevronRight} from "@fortawesome/free-solid-svg-icons";
 import LeaderboardDialog from "./GameLeaderBoard.jsx";
+import Dialog from '../../components/Dialog.jsx';
 import {useTranslation} from 'react-i18next';
 
 function GamesPage() {
@@ -20,6 +21,8 @@ function GamesPage() {
     const navigate = useNavigate();
     const [openLeaderboard, setOpenLeaderboard] = useState(false);
     const [selectedGameId, setSelectedGameId] = useState(null);
+    const [dialogOpen, setDialogOpen] = useState(false);
+    const [dialogGame, setDialogGame] = useState(null);
 
     useEffect(() => {
         axios.get('/api/games/filters/options')
@@ -86,6 +89,16 @@ function GamesPage() {
         setOpenLeaderboard(false);
         setTimeout(() => setSelectedGameId(null), 300);  // Clear the selected gameId
     };
+
+    const openDialog = (game) => {
+        setDialogGame(game);
+        setDialogOpen(true);
+    };
+    const closeDialog = () => {
+        setDialogOpen(false);
+        setDialogGame(null);
+    };
+
     return (<>
         <Header/>
         <section className={styles.sectionHeader} style={{backgroundImage: `url(/background.png)`}}>
@@ -186,6 +199,7 @@ function GamesPage() {
                                 >
                                     {t('play_now')} ▶️
                                 </button>
+
                                 <button
                                     onClick={() => handleOpenLeaderboard(game.gameId)}
                                     style={leaderBtnStyle}
@@ -198,6 +212,7 @@ function GamesPage() {
             </div>
 
         </div>
+
         <LeaderboardDialog
             open={openLeaderboard}
             onClose={handleCloseLeaderboard}
