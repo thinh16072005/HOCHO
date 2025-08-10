@@ -98,7 +98,7 @@ export default function TeacherVideoListPage() {
             <div className={styles.myVideosContainer}>
                 <Space className={styles.myVideosHeader} align="center">
                     <Title level={2} className={styles.myVideosTitle}>
-                        {t('my_video')}
+                        {t('my_videos')}
                     </Title>
                     <Button
                         type="primary"
