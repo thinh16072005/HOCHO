@@ -13,7 +13,7 @@ function ForgotPassword() {
         e.preventDefault();
         setMessage(t('forgot_password_sending', 'Sending ...'));
         try {
-            const response = await fetch('http://localhost:8080/api/auth/forgot-password', {
+            const response = await fetch('https://hocho-c7ekfwhrehavd6fr.southeastasia-01.azurewebsites.net/api/auth/forgot-password', {
                 method: 'POST', headers: {
                     'Content-Type': 'application/json',
                 }, body: JSON.stringify({email}),
