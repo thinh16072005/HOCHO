@@ -4,6 +4,7 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 RUN mvn clean package -DskipTests
+EXPOSE 8080
 
 # Use a lightweight JRE image to run the app
 FROM eclipse-temurin:17-jre-alpine
